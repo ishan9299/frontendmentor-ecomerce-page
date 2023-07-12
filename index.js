@@ -111,3 +111,35 @@ cartDeleteBtn.addEventListener("click", () => {
 })
 
 // images
+const imgFiles = [
+    "./images/image-product-1.jpg",
+    "./images/image-product-2.jpg",
+    "./images/image-product-3.jpg",
+    "./images/image-product-4.jpg"
+];
+const imgNextBtn = document.querySelector(".img-next-btn");
+const imgPrevBtn = document.querySelector(".img-prev-btn");
+const img = document.querySelector(".product-screenshot");
+
+imgNextBtn.addEventListener("click", () => {
+    let imgIndex = img.getAttribute("data-img-index");
+    console.log(`image index ${imgIndex}`);
+    imgIndex = parseInt(imgIndex);
+    imgIndex = imgIndex + 1;
+    if (imgIndex >= imgFiles.length) {
+        imgIndex = 0;
+    }
+    img.setAttribute("src", imgFiles[imgIndex]);
+    img.setAttribute("data-img-index", imgIndex);
+})
+
+imgPrevBtn.addEventListener("click", () => {
+    let imgIndex = img.getAttribute("data-img-index");
+    imgIndex = parseInt(imgIndex);
+    imgIndex = imgIndex - 1;
+    if (imgIndex < 0) {
+        imgIndex = (imgFiles.length - 1);
+    }
+    img.src = imgFiles[imgIndex];
+    img.setAttribute("data-img-index", imgIndex);
+})
